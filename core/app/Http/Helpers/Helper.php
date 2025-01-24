@@ -16,6 +16,7 @@ use Intervention\Image\Facades\Image;
 use Jenssegers\Date\Date;
 
 /* Include all the other helpers here */
+
 include 'PluginHelper.php';
 
 /**
@@ -28,24 +29,26 @@ include 'PluginHelper.php';
 function set_env($key, $value, $quote = false)
 {
     $path = app()->environmentFilePath();
-    $value = ($quote) ? '"'.$value.'"' : $value;
+    $value = ($quote) ? '"' . $value . '"' : $value;
 
     if (is_bool(env($key))) {
         $old = env($key) ? 'true' : 'false';
     } elseif (env($key) === null) {
         $old = 'null';
     } else {
-        $old = ($quote) ? '"'.env($key).'"' : env($key);
+        $old = ($quote) ? '"' . env($key) . '"' : env($key);
     }
 
     if (file_exists($path)) {
         $str = file_get_contents($path);
-        if (str_contains($str, "$key=".$old)) {
+        if (str_contains($str, "$key=" . $old)) {
             file_put_contents($path, str_replace(
-                "$key=".$old, "$key=".$value, $str
+                "$key=" . $old,
+                "$key=" . $value,
+                $str
             ));
         } else {
-            file_put_contents($path, $str."\n$key=".$value);
+            file_put_contents($path, $str . "\n$key=" . $value);
         }
     }
 }
@@ -66,9 +69,9 @@ function active_theme($asset = false)
         $template = $sess;
     }
     if ($asset) {
-        return 'assets/templates/'.$template.'/';
+        return 'assets/templates/' . $template . '/';
     }
-    return 'templates.'.$template.'.';
+    return 'templates.' . $template . '.';
 }
 
 /**
@@ -97,7 +100,7 @@ function active_theme_name()
 function page_title($env)
 {
     if ($env->yieldContent('title')) {
-        $title = $env->yieldContent('title').' - '.config('settings.site_title');
+        $title = $env->yieldContent('title') . ' - ' . config('settings.site_title');
     } else {
         $title = config('settings.site_title');
     }
@@ -198,9 +201,9 @@ function price_format($price)
 function price_symbol_format($price)
 {
     if (config('settings.currency_pos') == 1) {
-        return config('settings.currency_sign').price_format($price);
+        return config('settings.currency_sign') . price_format($price);
     } else {
-        return price_format($price).config('settings.currency_sign');
+        return price_format($price) . config('settings.currency_sign');
     }
 }
 
@@ -213,9 +216,9 @@ function price_symbol_format($price)
 function price_code_format($price)
 {
     if (config('settings.currency_pos') == 1) {
-        return config('settings.currency_code').' '.price_format($price);
+        return config('settings.currency_code') . ' ' . price_format($price);
     } else {
-        return price_format($price).' '.config('settings.currency_code');
+        return price_format($price) . ' ' . config('settings.currency_code');
     }
 }
 
@@ -259,7 +262,7 @@ function admin_url()
  */
 function is_admin_url()
 {
-    if (str_contains(request()->path(), admin_url().'/')) {
+    if (str_contains(request()->path(), admin_url() . '/')) {
         return true;
     }
     return false;
@@ -357,14 +360,14 @@ function ___($key, array $replace = [])
 {
     $trans_slug = Str::slug($key, '_');
 
-    if (Lang::has('lang.'.$trans_slug)) {
-        return trans('lang.'.$trans_slug, $replace, get_lang());
+    if (Lang::has('lang.' . $trans_slug)) {
+        return trans('lang.' . $trans_slug, $replace, get_lang());
     }
 
     /* Add Language key to all files if not exist */
     $allLanguages = File::directories(base_path('lang'));
     foreach ($allLanguages as $language) {
-        $filePath = $language.'/'.'lang.php';
+        $filePath = $language . '/' . 'lang.php';
 
         if (File::exists($filePath)) {
             $translations = include $filePath;
@@ -374,7 +377,7 @@ function ___($key, array $replace = [])
 
         if (!array_key_exists($trans_slug, $translations)) {
             $translations[$trans_slug] = $key;
-            File::put($filePath, "<?php\n\nreturn ".var_export($translations, true).";\n");
+            File::put($filePath, "<?php\n\nreturn " . var_export($translations, true) . ";\n");
         }
     }
 
@@ -413,8 +416,10 @@ function user_ip_lookup($ip = null)
     if (Cache::has($ip)) {
         $ipInfo = Cache::get($ip);
     } else {
-        $ipInfo = (object) json_decode(curl_get_file_contents("http://ip-api.com/json/{$ip}?fields=status,country,countryCode,city,zip,lat,lon,timezone,query"),
-            true);
+        $ipInfo = (object) json_decode(
+            curl_get_file_contents("http://ip-api.com/json/{$ip}?fields=status,country,countryCode,city,zip,lat,lon,timezone,query"),
+            true
+        );
         Cache::forever($ip, $ipInfo);
     }
     $result['ip'] = $ipInfo->query ?? $ip;
@@ -536,25 +541,24 @@ function curl_get_file_contents($URL)
 function image_upload($file, $path, $size = null, $filename = null, $oldfilename = null)
 {
     ini_set('memory_limit', '256M');
-    $filename = empty($filename) ? uniqid().time().'.'.$file->getClientOriginalExtension() : $filename.'.'.$file->getClientOriginalExtension();
+    $filename = empty($filename) ? uniqid() . time() . '.' . $file->getClientOriginalExtension() : $filename . '.' . $file->getClientOriginalExtension();
 
     if ($oldfilename) {
-        remove_file($path.$oldfilename);
+        remove_file($path . $oldfilename);
     }
 
     $image = Image::make($file);
     if ($size) {
         $size = explode('x', strtolower($size));
-        if(isset($size[1])){
+        if (isset($size[1])) {
             $image->resize($size[0], $size[1]);
         } else {
             $image->resize($size[0], null, function ($constraint) {
                 $constraint->aspectRatio();
             });
         }
-
     }
-    $image->save($path.$filename);
+    $image->save($path . $filename);
 
     return $filename;
 }
@@ -616,7 +620,7 @@ function format_number_count($number)
     for ($i = 0; $i < count($suffix); $i++) {
         $divide = $number / pow(1000, $i);
         if ($divide < 1000) {
-            return round($divide, $precision).$suffix[$i];
+            return round($divide, $precision) . $suffix[$i];
         }
     }
 
@@ -651,7 +655,7 @@ function display_captcha()
 {
     $script = null;
     if (config('settings.recaptcha_mode')) {
-        $script = '<div class="margin-bottom-15">'.app('captcha')->display().'</div>';
+        $script = '<div class="margin-bottom-15">' . app('captcha')->display() . '</div>';
     }
     return $script;
 }
@@ -707,7 +711,7 @@ function ads_on_top()
 {
     if ($ad = ads('top')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">'.$ad->code.'</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
         </center>';
     }
     return null;
@@ -722,7 +726,7 @@ function ads_on_bottom()
 {
     if ($ad = ads('bottom')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">'.$ad->code.'</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
         </center>';
     }
     return null;
@@ -737,7 +741,7 @@ function ads_on_dashboard_top()
 {
     if ($ad = ads('dashboard_top')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">'.$ad->code.'</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
         </center>';
     }
     return null;
@@ -752,7 +756,7 @@ function ads_on_dashboard_bottom()
 {
     if ($ad = ads('dashboard_bottom')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">'.$ad->code.'</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
         </center>';
     }
     return null;
@@ -765,7 +769,7 @@ function ads_on_home_1()
 {
     if ($ad = ads('home_page_1')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">'.$ad->code.'</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
         </center>';
     }
     return null;
@@ -778,7 +782,7 @@ function ads_on_home_2()
 {
     if ($ad = ads('home_page_2')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">'.$ad->code.'</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
         </center>';
     }
     return null;
@@ -797,7 +801,7 @@ function quick_xor($str, $password = '')
     $gamma = '';
     $n = $len > 100 ? 8 : 2;
     while (strlen($gamma) < $len) {
-        $gamma .= substr(pack('H*', sha1($password.$gamma)), 0, $n);
+        $gamma .= substr(pack('H*', sha1($password . $gamma)), 0, $n);
     }
 
     return $str ^ $gamma;
@@ -841,24 +845,24 @@ function quick_switch($title, $id, $checked = false, $hint = '')
     $check = ($checked) ? 'checked' : '';
 
     if (!empty($hint)) {
-        $hint = '<small class="form-text">'.$hint.'</small>';
+        $hint = '<small class="form-text">' . $hint . '</small>';
     }
 
     echo '<div class="form-group">
-        <label class="form-label" for="'.$id.'">'.$title.'</label>
+        <label class="form-label" for="' . $id . '">' . $title . '</label>
         <div class="form-toggle-option">
             <div>
-                <label for="'.$id.'">'.___("Enable").'</label>
+                <label for="' . $id . '">' . ___("Enable") . '</label>
             </div>
             <div>
-                <input type="hidden" name="'.$id.'" value="0">
+                <input type="hidden" name="' . $id . '" value="0">
                 <label class="switch switch-sm">
-                    <input name="'.$id.'" type="checkbox" id="'.$id.'" value="1" '.$check.'>
+                    <input name="' . $id . '" type="checkbox" id="' . $id . '" value="1" ' . $check . '>
                     <span class="switch-state"></span>
                 </label>
             </div>
         </div>
-        '.$hint.'
+        ' . $hint . '
     </div>';
     return '';
 }
