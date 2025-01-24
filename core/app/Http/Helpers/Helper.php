@@ -711,7 +711,7 @@ function ads_on_top()
 {
     if ($ad = ads('top')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4"></div>
         </center>';
     }
     return null;
@@ -726,7 +726,7 @@ function ads_on_bottom()
 {
     if ($ad = ads('bottom')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4"></div>
         </center>';
     }
     return null;
@@ -741,7 +741,7 @@ function ads_on_dashboard_top()
 {
     if ($ad = ads('dashboard_top')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4"></div>
         </center>';
     }
     return null;
@@ -756,7 +756,7 @@ function ads_on_dashboard_bottom()
 {
     if ($ad = ads('dashboard_bottom')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4"></div>
         </center>';
     }
     return null;
@@ -769,7 +769,7 @@ function ads_on_home_1()
 {
     if ($ad = ads('home_page_1')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4"></div>
         </center>';
     }
     return null;
@@ -782,7 +782,7 @@ function ads_on_home_2()
 {
     if ($ad = ads('home_page_2')) {
         return '<center>
-           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4">' . $ad->code . '</div>
+           <div class="google-ads-728x90 margin-top-30 margin-bottom-30 my-4"></div>
         </center>';
     }
     return null;
