@@ -753,4 +753,6 @@ return array (
   'sorry_for_the_inconvenience_but_were_working_on_it' => 'Sorry for the inconvenience, but we\'re working on it.',
   'no_items_available' => 'No items available.',
   'scan_limit_exceed' => 'Scan Limit Exceed',
+  'server_error' => 'Server Error',
+  'bank_information' => 'Bank Information',
 );
