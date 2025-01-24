@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', 'Dashboard')
 @section('content')
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-sm-6 col-lg-3">
             <div class="card card-border-shadow-primary">
                 <div class="card-body">
@@ -108,7 +108,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="row">
         <div class="col-lg-8">
@@ -142,42 +142,41 @@
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5>{{ ___('Recent Registered') }}</h5>
                     <div>
-                        <a class="btn btn-sm btn-primary"
-                           href="{{ route('admin.users.index') }}">{{ ___('View All') }}</a>
+                        <a class="btn btn-sm btn-primary" href="{{ route('admin.users.index') }}">{{ ___('View All') }}</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                            <tr>
-                                <th>{{ ___('Name') }}</th>
-                                <th>{{ ___('Email') }}</th>
-                                <th>{{ ___('Date') }}</th>
-                            </tr>
+                                <tr>
+                                    <th>{{ ___('Name') }}</th>
+                                    <th>{{ ___('Email') }}</th>
+                                    <th>{{ ___('Date') }}</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @forelse ($users as $user)
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar avatar-sm me-2"><img
-                                                    src="{{asset('storage/profile/'.$user->image)}}"
-                                                    alt="{{ $user->name }}" class="rounded-circle"></div>
-                                            <a class="text-body text-truncate fw-semibold"
-                                               href="{{ route('admin.users.edit', $user->id) }}">{{ $user->name }}</a>
-                                        </div>
-                                    </td>
-                                    <td>{{ $user->email }}</td>
-                                    <td class="text-truncate">{{ $user->created_at->diffforhumans() }}</td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="3" class="text-center">
-                                        {{___('No Data Found.')}}
-                                    </td>
-                                </tr>
-                            @endforelse
+                                @forelse ($users as $user)
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar avatar-sm me-2"><img
+                                                        src="{{ asset('storage/profile/' . $user->image) }}"
+                                                        alt="{{ $user->name }}" class="rounded-circle"></div>
+                                                <a class="text-body text-truncate fw-semibold"
+                                                    href="{{ route('admin.users.edit', $user->id) }}">{{ $user->name }}</a>
+                                            </div>
+                                        </td>
+                                        <td>{{ $user->email }}</td>
+                                        <td class="text-truncate">{{ $user->created_at->diffforhumans() }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3" class="text-center">
+                                            {{ ___('No Data Found.') }}
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -190,21 +189,23 @@
                     <h5>{{ ___('Transactions') }}</h5>
                     <div>
                         <a class="btn btn-sm btn-primary"
-                           href="{{ route('admin.transactions.index') }}">{{ ___('View All') }}</a>
+                            href="{{ route('admin.transactions.index') }}">{{ ___('View All') }}</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <ul class="p-0 m-0">
                         @forelse ($transactions as $transaction)
-                            <li class="d-flex {{ ($loop->last) ? '' : 'mb-4 pb-1' }}">
+                            <li class="d-flex {{ $loop->last ? '' : 'mb-4 pb-1' }}">
                                 <div class="avatar avatar-sm flex-shrink-0 me-3">
-                                    <img src="{{asset('storage/profile/'.$transaction->user->image)}}"
-                                            alt="{{ $transaction->user->name }}" class="rounded-circle" title="{{ $transaction->user->name }}">
+                                    <img src="{{ asset('storage/profile/' . $transaction->user->image) }}"
+                                        alt="{{ $transaction->user->name }}" class="rounded-circle"
+                                        title="{{ $transaction->user->name }}">
                                 </div>
                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                     <div class="me-2">
                                         <h6 class="mb-1">{{ $transaction->product_name }}</h6>
-                                        <small class="text-muted d-block">{{ $transaction->created_at->diffforhumans() }}</small>
+                                        <small
+                                            class="text-muted d-block">{{ $transaction->created_at->diffforhumans() }}</small>
                                     </div>
                                     <div class="user-progress d-flex align-items-center gap-1">
                                         <h6 class="mb-0">{{ price_symbol_format($transaction->amount) }}</h6>
@@ -212,7 +213,7 @@
                                 </div>
                             </li>
                         @empty
-                            {{___('No Data Found.')}}
+                            {{ ___('No Data Found.') }}
                         @endforelse
                     </ul>
                 </div>
@@ -223,7 +224,9 @@
     @push('scripts_at_top')
         <script type="text/javascript">
             "use strict";
-            const QuickMenu = {"page": "dashboard"};
+            const QuickMenu = {
+                "page": "dashboard"
+            };
         </script>
     @endpush
     @push('scripts_vendor')
@@ -359,4 +362,3 @@
         </script>
     @endpush
 @endsection
-
