@@ -751,4 +751,7 @@ return array (
   'sorry_for_the_inconvenience_but_were_working_on_it' => 'Sorry for the inconvenience, but we\'re working on it.',
   'no_items_available' => 'No items available.',
   'scan_limit_exceed' => 'Scan Limit Exceed',
+  'welcome_quickcms_is_an_custom_content_management_system_developed_by_bylancer_developers' => 'Welcome! QuickCMS is an custom content management system developed by Bylancer developers.',
+  'installation_process_is_very_easy_and_it_takes_less_than_2_minutes' => 'Installation process is very easy and it takes less than 2 minutes!',
+  'start_installation' => 'Start Installation',
 );
