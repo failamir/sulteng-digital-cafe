@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', 'Dashboard')
 @section('content')
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-sm-6 col-lg-3">
             <div class="card card-border-shadow-primary">
                 <div class="card-body">
@@ -33,8 +33,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2 pb-1">
                         <div class="avatar me-2">
-                            <span class="avatar-initial rounded bg-label-warning"><i
-                                    class="fas fa-qrcode"></i></span>
+                            <span class="avatar-initial rounded bg-label-warning"><i class="fas fa-qrcode"></i></span>
                         </div>
                         <h4 class="ms-1 mb-0">{{ format_number_count($total_scans) }}</h4>
                     </div>
@@ -86,8 +85,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mb-2 pb-1">
                         <div class="avatar me-2">
-                            <span class="avatar-initial rounded bg-label-warning"><i
-                                    class="fas fa-money-bills"></i></span>
+                            <span class="avatar-initial rounded bg-label-warning"><i class="fas fa-money-bills"></i></span>
                         </div>
                         <h4 class="ms-1 mb-0">{{ price_symbol_format($total_earnings) }}</h4>
                     </div>
@@ -108,7 +106,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <div class="row">
         <div class="col-lg-8">
@@ -142,7 +140,8 @@
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5>{{ ___('Recent Registered') }}</h5>
                     <div>
-                        <a class="btn btn-sm btn-primary" href="{{ route('admin.users.index') }}">{{ ___('View All') }}</a>
+                        <a class="btn btn-sm btn-primary"
+                            href="{{ route('admin.users.index') }}">{{ ___('View All') }}</a>
                     </div>
                 </div>
                 <div class="card-body">
