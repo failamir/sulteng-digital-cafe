@@ -3,114 +3,114 @@
 @section('content')
     <div class="row">
         {{-- <div class="col-lg-12">
-            <div class="col-sm-6 col-lg-3">
-                <div class="card card-border-shadow-primary">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2 pb-1">
-                            <div class="avatar me-2">
-                                <span class="avatar-initial rounded bg-label-primary"><i class="far fa-utensils"></i></span>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-border-shadow-primary">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2 pb-1">
+                                <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-primary"><i class="far fa-utensils"></i></span>
+                                </div>
+                                <h4 class="ms-1 mb-0">{{ format_number_count($total_posts) }}</h4>
                             </div>
-                            <h4 class="ms-1 mb-0">{{ format_number_count($total_posts) }}</h4>
+                            <p class="mb-0 fs-6">{{ ___('Total Restaurants') }}</p>
                         </div>
-                        <p class="mb-0 fs-6">{{ ___('Total Restaurants') }}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card card-border-shadow-danger">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2 pb-1">
-                            <div class="avatar me-2">
-                                <span class="avatar-initial rounded bg-label-danger"><i class="far fa-utensils"></i></span>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-border-shadow-danger">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2 pb-1">
+                                <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-danger"><i class="far fa-utensils"></i></span>
+                                </div>
+                                <h4 class="ms-1 mb-0">{{ format_number_count($current_month_posts) }}</h4>
                             </div>
-                            <h4 class="ms-1 mb-0">{{ format_number_count($current_month_posts) }}</h4>
+                            <p class="mb-0 fs-6">{{ ___('Current Month Restaurants') }}</p>
                         </div>
-                        <p class="mb-0 fs-6">{{ ___('Current Month Restaurants') }}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card card-border-shadow-warning">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2 pb-1">
-                            <div class="avatar me-2">
-                                <span class="avatar-initial rounded bg-label-warning"><i class="fas fa-qrcode"></i></span>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-border-shadow-warning">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2 pb-1">
+                                <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-warning"><i class="fas fa-qrcode"></i></span>
+                                </div>
+                                <h4 class="ms-1 mb-0">{{ format_number_count($total_scans) }}</h4>
                             </div>
-                            <h4 class="ms-1 mb-0">{{ format_number_count($total_scans) }}</h4>
+                            <p class="mb-0 fs-6">{{ ___('Total Scans') }}</p>
                         </div>
-                        <p class="mb-0 fs-6">{{ ___('Total Scans') }}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card card-border-shadow-info">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2 pb-1">
-                            <div class="avatar me-2">
-                                <span class="avatar-initial rounded bg-label-info"><i class="far fa-qrcode"></i></span>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-border-shadow-info">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2 pb-1">
+                                <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-info"><i class="far fa-qrcode"></i></span>
+                                </div>
+                                <h4 class="ms-1 mb-0">{{ format_number_count($current_month_scans) }}</h4>
                             </div>
-                            <h4 class="ms-1 mb-0">{{ format_number_count($current_month_scans) }}</h4>
+                            <p class="mb-0 fs-6">{{ ___('Current Month Scans') }}</p>
                         </div>
-                        <p class="mb-0 fs-6">{{ ___('Current Month Scans') }}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card card-border-shadow-primary">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2 pb-1">
-                            <div class="avatar me-2">
-                                <span class="avatar-initial rounded bg-label-primary"><i class="fas fa-users"></i></span>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-border-shadow-primary">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2 pb-1">
+                                <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-primary"><i class="fas fa-users"></i></span>
+                                </div>
+                                <h4 class="ms-1 mb-0">{{ format_number_count($total_users) }}</h4>
                             </div>
-                            <h4 class="ms-1 mb-0">{{ format_number_count($total_users) }}</h4>
+                            <p class="mb-0 fs-6">{{ ___('Total Users') }}</p>
                         </div>
-                        <p class="mb-0 fs-6">{{ ___('Total Users') }}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card card-border-shadow-danger">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2 pb-1">
-                            <div class="avatar me-2">
-                                <span class="avatar-initial rounded bg-label-danger"><i class="fas fa-user-plus"></i></span>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-border-shadow-danger">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2 pb-1">
+                                <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-danger"><i class="fas fa-user-plus"></i></span>
+                                </div>
+                                <h4 class="ms-1 mb-0">{{ format_number_count($current_month_users) }}</h4>
                             </div>
-                            <h4 class="ms-1 mb-0">{{ format_number_count($current_month_users) }}</h4>
+                            <p class="mb-0 fs-6">{{ ___('Current Month Users') }}</p>
                         </div>
-                        <p class="mb-0 fs-6">{{ ___('Current Month Users') }}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card card-border-shadow-warning">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2 pb-1">
-                            <div class="avatar me-2">
-                                <span class="avatar-initial rounded bg-label-warning"><i
-                                        class="fas fa-money-bills"></i></span>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-border-shadow-warning">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2 pb-1">
+                                <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-warning"><i
+                                            class="fas fa-money-bills"></i></span>
+                                </div>
+                                <h4 class="ms-1 mb-0">{{ price_symbol_format($total_earnings) }}</h4>
                             </div>
-                            <h4 class="ms-1 mb-0">{{ price_symbol_format($total_earnings) }}</h4>
+                            <p class="mb-0 fs-6">{{ ___('Total Earnings') }}</p>
                         </div>
-                        <p class="mb-0 fs-6">{{ ___('Total Earnings') }}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="card card-border-shadow-info">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-2 pb-1">
-                            <div class="avatar me-2">
-                                <span class="avatar-initial rounded bg-label-info"><i class="far fa-money-bills"></i></span>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-border-shadow-info">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2 pb-1">
+                                <div class="avatar me-2">
+                                    <span class="avatar-initial rounded bg-label-info"><i class="far fa-money-bills"></i></span>
+                                </div>
+                                <h4 class="ms-1 mb-0">{{ price_symbol_format($current_month_earnings) }}</h4>
                             </div>
-                            <h4 class="ms-1 mb-0">{{ price_symbol_format($current_month_earnings) }}</h4>
+                            <p class="mb-0 fs-6">{{ ___('Current Month Earnings') }}</p>
                         </div>
-                        <p class="mb-0 fs-6">{{ ___('Current Month Earnings') }}</p>
                     </div>
                 </div>
-            </div>
-        </div> --}}
+            </div> --}}
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-lg-8">
                 <div class="quick-card card">
                     <div class="card-header">
@@ -361,7 +361,7 @@
                     }
                 });
             </script>
-        @endpush
+        @endpush --}}
 
         <!-- Fun Facts Container -->
         <div class="fun-facts-container">
