@@ -220,7 +220,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         @push('scripts_at_top')
             <script type="text/javascript">
@@ -361,7 +361,7 @@
                     }
                 });
             </script>
-        @endpush --}}
+        @endpush
 
         <!-- Fun Facts Container -->
         <div class="fun-facts-container">
